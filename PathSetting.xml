@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Path>
+    <filePath>E:\Data\Argo\源</filePath>
+    <url>jdbc:postgresql://127.0.0.1:5432/postgres</url>
+    <UserID>postgres</UserID>
+    <Password>postgres</Password>
+    <IsFirst>true</IsFirst>
+
+    <ArgoIP>ftp.ifremer.fr</ArgoIP>
+    <ArgoLogName>Anonymous</ArgoLogName>
+    <ArgoPassWord>None</ArgoPassWord>
+    <ArgoRemoteDirTxt>ifremer/argo/</ArgoRemoteDirTxt>
+    <ArgoRemoteDirDac>ifremer/argo/dac/</ArgoRemoteDirDac>
+    <ArgoJsonPath>F:/BGCArgo/BgcData/BGCAgro/Json/</ArgoJsonPath>
+    <ArgoDownLoadPath>F:/BGCArgo/BgcData/BGCAgro/Download/</ArgoDownLoadPath>
+
+    <ftproot1>ftp://ftp.ifremer.fr/ifremer/argo/dac/</ftproot1>
+    <ftproot2>ftp://usgodae.org/pub/outgoing/argo/</ftproot2>
+    <allmetaIndex>ftp://ftp.ifremer.fr/ifremer/argo/ar_index_global_meta.txt</allmetaIndex>
+    <MRIndex>ftp://ftp.ifremer.fr/ifremer/argo/argo_merge-profile_index.txt</MRIndex>
+    <SRIndex>ftp://ftp.ifremer.fr/ifremer/argo/argo_synthetic-profile_index.txt</SRIndex>
+    <allmetaIndex_week>ftp://ftp.ifremer.fr/ifremer/argo/ar_index_this_week_meta.txt</allmetaIndex_week>
+    <allprofIndex_week>ftp://ftp.ifremer.fr/ifremer/argo/ar_index_this_week_prof.txt</allprofIndex_week>
+
+    <indexDown>E:\Data\Bgc\downloaded\index</indexDown>
+    <metaDown>E:\Data\Bgc\downloaded\meta</metaDown>
+    <profileDown>E:\Data\Bgc\downloaded\profile</profileDown>
+
+    <indexSave>E:\Data\Bgc\saved\index</indexSave>
+    <metaSave>E:\Data\Bgc\saved\meta</metaSave>
+    <profileSave>E:\Data\Bgc\saved\profile</profileSave>
+
+    <jsonPath>E:\products\json\</jsonPath>
+    <jsonBDPath>E:\products\jsonbd\</jsonBDPath>
+
+    <logPath>F:/BGCArgo/BgcData/BGCAgro/Log/alllog</logPath>
+    <errlogPath>F:/BGCArgo/BgcData/BGCAgro/Log/errorlog</errlogPath>
+
+
+    <!--上一个项目的-->
+    <importOrder>BDMeta;BDProfile;ArgoMetatxt;ArgoMeta;BOA;ArgoProfile</importOrder>
+    <ArgoMetaTranslate>100</ArgoMetaTranslate>
+    <BDMetaTranslate>100</BDMetaTranslate>
+    <ArgoMetatxtTranslate>1</ArgoMetatxtTranslate>
+    <ArgoProfileTranslate>200</ArgoProfileTranslate>
+    <BDProfileTranslate>200</BDProfileTranslate>
+    <BOATranslate>1</BOATranslate>
+    <!--    -->
+
+</Path>

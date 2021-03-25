@@ -134,11 +134,11 @@ public class main {
 
         // 原先的每周定时任务
         if (IsFirst.equals("true")) {
-            ReadTxt.getInstance().Read_allmetaIndex("F:\\BGCArgo\\BgcData\\part_ar_index_global_meta.txt");
-//            ReadTxt.getInstance().Read_allmetaIndex(ftpDownload.Download_txt("allmetaIndex"));
+//            ReadTxt.getInstance().Read_allmetaIndex("F:\\BGCArgo\\BgcData\\part_ar_index_global_meta.txt");
+            ReadTxt.getInstance().Read_allmetaIndex(ftpDownload.Download_txt("allmetaIndex"));
             //下载ar_index_global_meta.txt,读取信息，填写all_metadata
-            ReadTxt.getInstance().Read_bgcIndex("F:\\BGCArgo\\BgcData\\part_argo_synthetic-profile_index.txt");
-//            ReadTxt.getInstance().Read_bgcIndex(ftpDownload.Download_txt("MRIndex"));
+//            ReadTxt.getInstance().Read_bgcIndex("F:\\BGCArgo\\BgcData\\part_argo_synthetic-profile_index.txt");
+            ReadTxt.getInstance().Read_bgcIndex(ftpDownload.Download_txt("MRIndex"));
             //下载argo_merge-profile_index.txt,读取信息，更新allmeta并复制其bgc的数据到bgcmeta、填写bgcprofile数据表
 
             //2020.4以下部分未更新！

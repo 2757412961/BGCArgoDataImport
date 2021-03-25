@@ -118,13 +118,13 @@ public class main {
 //        test.add("F:/BGCArgo/BgcData/BGCAgro/Download/aoml/5904179/profiles/SD5904179_176.nc"); // NullPointerException
 //        test.add("D:/BGCAgro/Download/csiro/5905395/profiles/SD5905395_031.nc"); //
         // 20210324
-//        test.add("F:\\BGCArgo\\BgcData\\BGCAgro\\Download\\jma\\2903394\\profiles\\BR2903394_110.nc");
-//        test.add("F:\\BGCArgo\\BgcData\\BGCAgro\\Download\\jma\\2903394\\profiles\\SR2903394_110.nc");
-//        test.add("F:\\BGCArgo\\BgcData\\BGCAgro\\Download\\jma\\2903394\\profiles\\R2903394_110.nc");
-//        test.add("F:\\BGCArgo\\BgcData\\BGCAgro\\Download\\jma\\2903394\\profiles\\BR2903394_143.nc");
-//        test.add("F:\\BGCArgo\\BgcData\\BGCAgro\\Download\\jma\\2903394\\profiles\\SR2903394_143.nc");
-//        test.add("F:\\BGCArgo\\BgcData\\BGCAgro\\Download\\jma\\2903394\\profiles\\R2903394_143.nc");
-        ReadMetaNC.getInstance().readFile(test);
+//        test.add("F:/BGCArgo/BgcData/BGCAgro/Download/jma/2903394/profiles/BR2903394_110.nc");
+        test.add("F:/BGCArgo/BgcData/BGCAgro/Download/jma/2903394/profiles/SR2903394_110.nc");
+//        test.add("F:/BGCArgo/BgcData/BGCAgro/Download/jma/2903394/profiles/R2903394_110.nc");
+//        test.add("F:/BGCArgo/BgcData/BGCAgro/Download/jma/2903394/profiles/BR2903394_143.nc");
+//        test.add("F:/BGCArgo/BgcData/BGCAgro/Download/jma/2903394/profiles/SR2903394_143.nc");
+//        test.add("F:/BGCArgo/BgcData/BGCAgro/Download/jma/2903394/profiles/R2903394_143.nc");
+//        ReadMetaNC.getInstance().readFile(test);
         ReadProfileNC.getInstance().readFile(test);
 
         System.out.println("等待输入 nextDouble ---------------------------------------------------- ");

@@ -84,56 +84,48 @@ public class ReadProfileNC extends ReadBase {
             /////////////////////////////////
             ArrayList<String> paras = new ArrayList<String>();//确定参数
             ArrayList<Integer> combineType = new ArrayList<Integer>();//剖面参数号
-            //int jsonNumber = 0;//json顺序号
             paras.add("P");
             DataVars.add("PRES");
             paras.add("T");
             DataVars.add("TEMP");
             combineType.add(0);
-            //jsonNumber++;
             if (parasCombine.contains("PSAL")) {
                 paras.add("S");
                 DataVars.add("PSAL");
-                //jsonNumber++;
                 combineType.add(1);
             }
             if (parasCombine.contains("DOXY")) {
                 paras.add("O");
                 DataVars.add("DOXY");
-                //jsonNumber++;
                 combineType.add(2);
             }
             if (parasCombine.contains("CHLA")) {
                 paras.add("C");
                 DataVars.add("CHLA");
-                //jsonNumber++;
                 combineType.add(3);
             }
             if (parasCombine.contains("NITRATE")) {
                 paras.add("N");
                 DataVars.add("NITRATE");
-                //jsonNumber++;
                 combineType.add(4);
             }
             if (parasCombine.contains("PH_IN_SITU_TOTAL")) {
                 paras.add("J");
                 DataVars.add("PH_IN_SITU_TOTAL");
-                //jsonNumber++;
                 combineType.add(5);
             }
             if (parasCombine.contains("CDOM")) {
                 paras.add("M");
                 DataVars.add("CDOM");
                 combineType.add(6);
-                //jsonNumber++;
             }
             if (parasCombine.contains("BBP700")) {
                 paras.add("B");
                 DataVars.add("BBP700");
                 combineType.add(7);
-                //jsonNumber++;
             }
             if (parasCombine.contains("DOWN")) {
+                // 五中选择里经常出现多种组合，所以需要分别判断
                 int number = 1;
                 if (parasCombine.contains("DOWN_IRRADIANCE380")) {
                     DataVars.add("DOWN_IRRADIANCE380");
@@ -160,7 +152,6 @@ public class ReadProfileNC extends ReadBase {
 //                paras.add("R3");
 //                paras.add("R4");
                 combineType.add(8);
-                //jsonNumber++;
             }
 //            String[] DataValues = new String[DataVars.size()];//获取数据
             ArrayList<String> DataValues = new ArrayList<>();//获取数据
@@ -394,9 +385,9 @@ public class ReadProfileNC extends ReadBase {
                     /////////////////////////////////
                     // 更新数据库
                     String insertPathSQL = "Update bgc_profile set "
-                            + "para_code='" + DataVars.toString() + "', " // 不确定用DataVars还是paras
-                            + "nc_path='" + proNC_path + "', "
-                            + "json_path='" + ArgoJsonPath + platform_number + "/" + profile_name + ".json'"
+                            + " para_code='" + DataVars.toString() + "', " // 不确定用DataVars还是paras
+                            + " nc_path='" + proNC_path + "', "
+                            + " json_path='" + ArgoJsonPath + platform_number + "/" + profile_name + ".json'"
                             + " where profile_name='" + profile_name + "'";
                     DBUtils.getInstance().executeUpdate(insertPathSQL);
                     /////////////////////////////////

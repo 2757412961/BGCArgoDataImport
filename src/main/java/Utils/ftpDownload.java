@@ -76,6 +76,7 @@ public class ftpDownload {
     public static void touch()  {
         try {
             connect();
+            ftpClient.sendCommand("pwd");
             ftpClient.sendNoOp();
 //            LogUtils.getInstance().logInfo("Touch Successfully!");
         } catch (IOException e) {

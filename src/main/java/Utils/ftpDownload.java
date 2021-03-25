@@ -129,7 +129,6 @@ public class ftpDownload {
         // makemetaUrl   aoml/1900022/1900022_meta.nc
         // getProfileUrl aoml/1900722/profiles/MD1900722_001.nc
         ArrayList<String> downloaded = new ArrayList<String>();
-//        int reconnect=0;
 
         final ExecutorService exec = Executors.newFixedThreadPool(1);
 

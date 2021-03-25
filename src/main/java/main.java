@@ -26,13 +26,11 @@ public class main {
             System.out.println(allIndex + "\n" + SRIndex);
         }
 
+        // 读取文件，插入数据库。如果原先有数据存在，则更新
+        ReadTxt.getInstance().Read_allmetaIndex(allIndex);
+        ReadTxt.getInstance().Read_bgcIndex(SRIndex);
+
         if (IsFirst.equals("true")) {
-            // 第一次入库
-
-            // 读取文件，插入数据库。
-            ReadTxt.getInstance().Read_allmetaIndex(allIndex);
-            ReadTxt.getInstance().Read_bgcIndex(SRIndex);
-
             // 第一次插入数据库
             ArrayList<String> metafileuels = GetUrls.getInstance().getMetaUrl(SRIndex); // 获取剖面meta数据nc的url
             ReadMetaNC.getInstance().readFile(ftpDownload.Download_list(metafileuels));
@@ -41,12 +39,6 @@ public class main {
             ReadProfileNC.getInstance().readFile(ftpDownload.Download_list(profileurls));
         } else {
             // 通过 GetUrls 类，可以在任意时刻获得还没有读取的nc文件。
-
-            // 读取文件，插入数据库。如果原先有数据存在，则更新
-            ReadTxt.getInstance().Read_allmetaIndex(allIndex);
-            ReadTxt.getInstance().Read_bgcIndex(SRIndex);
-
-            // 将剩余文件插入数据库
             ArrayList<String> metafileuels = GetUrls.getInstance().getMetaUrl_Res(SRIndex); // 获取剩余剖面meta数据nc的url
             ReadMetaNC.getInstance().readFile(ftpDownload.Download_list(metafileuels));
 
@@ -118,29 +110,35 @@ public class main {
         // runTimeTask();
 
         // ------------------------- 测试部分 ---------------------------------
-        LogUtils.getInstance().logInfo("Start Test");
-//        ArrayList<String> test = new ArrayList<>();
+        LogUtils.getInstance().logInfo("Test Start");
+        ArrayList<String> test = new ArrayList<>();
 //        test.add("F:/BGCArgo/BgcData/BGCAgro/Download/coriolis/6902954/profiles/SR6902954_003.nc"); // NullPointerException
 //        test.add("F:/BGCArgo/BgcData/BGCAgro/Download/coriolis/6902954/profiles/MR6902954_003.nc"); // NullPointerException
 //        test.add("F:/BGCArgo/BgcData/BGCAgro/Download/aoml/5904179/profiles/MD5904179_176.nc"); // NullPointerException
 //        test.add("F:/BGCArgo/BgcData/BGCAgro/Download/aoml/5904179/profiles/SD5904179_176.nc"); // NullPointerException
 //        test.add("D:/BGCAgro/Download/csiro/5905395/profiles/SD5905395_031.nc"); //
-//        test = GetUrls.getInstance().getLonLatList("D:\\BGCAgro\\Download\\errorProfile.txt");
-//        ReadProfileNC.getInstance().addLoLat(test);
-//        ReadMetaNC.getInstance().readFile(test);
-//        ReadProfileNC.getInstance().readFile(test);
+        // 20210324
+//        test.add("F:\\BGCArgo\\BgcData\\BGCAgro\\Download\\jma\\2903394\\profiles\\BR2903394_110.nc");
+//        test.add("F:\\BGCArgo\\BgcData\\BGCAgro\\Download\\jma\\2903394\\profiles\\SR2903394_110.nc");
+//        test.add("F:\\BGCArgo\\BgcData\\BGCAgro\\Download\\jma\\2903394\\profiles\\R2903394_110.nc");
+//        test.add("F:\\BGCArgo\\BgcData\\BGCAgro\\Download\\jma\\2903394\\profiles\\BR2903394_143.nc");
+//        test.add("F:\\BGCArgo\\BgcData\\BGCAgro\\Download\\jma\\2903394\\profiles\\SR2903394_143.nc");
+//        test.add("F:\\BGCArgo\\BgcData\\BGCAgro\\Download\\jma\\2903394\\profiles\\R2903394_143.nc");
+        ReadMetaNC.getInstance().readFile(test);
+        ReadProfileNC.getInstance().readFile(test);
 
         System.out.println("等待输入 nextDouble ---------------------------------------------------- ");
         new Scanner(System.in).nextDouble();
+        LogUtils.getInstance().logInfo("Test End");
         // ----------------------- 测试部分结束 ---------------------------------
 
         // 原先的每周定时任务
         if (IsFirst.equals("true")) {
-//            ReadTxt.getInstance().Read_allmetaIndex("D:\\BGCAgro\\Download\\0410index_global_meta.txt"); //2020.4更新
-            ReadTxt.getInstance().Read_allmetaIndex(ftpDownload.Download_txt("allmetaIndex"));
+            ReadTxt.getInstance().Read_allmetaIndex("F:\\BGCArgo\\BgcData\\part_ar_index_global_meta.txt");
+//            ReadTxt.getInstance().Read_allmetaIndex(ftpDownload.Download_txt("allmetaIndex"));
             //下载ar_index_global_meta.txt,读取信息，填写all_metadata
-//            ReadTxt.getInstance().Read_bgcIndex("D:\\BGCAgro\\Download\\0410merge-profile_index.txt"); //2020.4更新
-            ReadTxt.getInstance().Read_bgcIndex(ftpDownload.Download_txt("MRIndex"));
+            ReadTxt.getInstance().Read_bgcIndex("F:\\BGCArgo\\BgcData\\part_argo_synthetic-profile_index.txt");
+//            ReadTxt.getInstance().Read_bgcIndex(ftpDownload.Download_txt("MRIndex"));
             //下载argo_merge-profile_index.txt,读取信息，更新allmeta并复制其bgc的数据到bgcmeta、填写bgcprofile数据表
 
             //2020.4以下部分未更新！
@@ -183,5 +181,6 @@ public class main {
                 }
             }, calendar.getTime(), 7 * 24 * 60 * 60 * 1000); // 2s后开始执行，每{？}秒执行一次， 7d*24h*60m*60s
         }
+
     }
 }

@@ -86,7 +86,7 @@ public class ReadTxt extends ReadBase {
                     insertdataList.add(splited[1]);//profiler_type
                     insertdataList.add(splited[3]);//date_update
                     insertdataList.add(getNow());
-                    Insert_allmeta(insertdataList);  //2020.4更新：会先判断数据库中是否存在该元数据，已存在则不进行操作
+                    Insert_allmeta(insertdataList);  //2020.4更新：会先判断数据库中是否存在该元数据，已存在则更新
 //                    all_metadata.add(splited[0].substring(splited[0].lastIndexOf("/") + 1, splited[0].lastIndexOf("_")));
 //                    LogUtils.getInstance().logInfo("Insert into all_metadata " + splited[0]);
                     insertdataList.clear();
@@ -170,7 +170,15 @@ public class ReadTxt extends ReadBase {
             DBUtils.getInstance().execute(SQL);
             LogUtils.getInstance().logInfo("Insert into all_metadata " + insertdataList.get(0));
         } else {
-            LogUtils.getInstance().logInfo("all_meta: platform_number " + insertdataList.get(0) + " already exits in Database!");
+            SQL = "Update all_metadata SET" +
+                    " institution = '" + insertdataList.get(1) + "'," +
+                    " t_file = '" + insertdataList.get(2) + "'," +
+                    " profiler_type = '" + insertdataList.get(3) + "'," +
+                    " date_update = to_timestamp('" + insertdataList.get(4) + "','YYYYMMDDHH24MISS')," +
+                    " time_write = to_timestamp('" + insertdataList.get(5) + "','YYYYMMDDHH24MISS')" +
+                    " WHERE platform_number = '" + insertdataList.get(0) + "'";
+            DBUtils.getInstance().execute(SQL);
+            LogUtils.getInstance().logInfo("Update all_metadata: platform_number " + insertdataList.get(0));
         }
 
     }
@@ -290,7 +298,7 @@ public class ReadTxt extends ReadBase {
 
     //完善all_metadata表的bgc信息(第一次和每周)
     public void Improve_allmeta(ArrayList<String> bgcList) {
-        if (bgcList.size()<=0)return;
+        if (bgcList.size() <= 0) return;
         String SQL = "Update  all_metadata set \"isBGC\"=true where (";
         for (int i = 0; i < bgcList.size() - 1; i++) {
             SQL += " platform_number='" + bgcList.get(i) + "'or ";
@@ -330,14 +338,11 @@ public class ReadTxt extends ReadBase {
         String SQL = "";
         String timeNow = getNow();
         for (String platform_number : bgcList) {
-
             if (!DBUtils.getInstance().isExistData("bgc_metadata", "platform_number", platform_number)) {
-
-//            if (DBUtils.getInstance().isExistData("bgc_metadata", "profile_name", profile_name)) {
-//            SQL="select platform_number from bgc_metadata where platform_number='" +bgcList.get(i)+"' ";
-//            if(DBUtils.getInstance().executeQueryScalarInt(SQL)>0)
-                SQL = "insert into bgc_metadata select platform_number,institution,t_file,profiler_type,date_update "
-                        + "from all_metadata where platform_number='" + platform_number + "' ";
+                SQL = "insert into bgc_metadata" +
+                        " select platform_number,institution,t_file,profiler_type,date_update " +
+                        " from all_metadata" +
+                        " where platform_number='" + platform_number + "' ";
                 //即将all_metadata中bgc的数据复制到bgc_metadata中
                 DBUtils.getInstance().execute(SQL);
                 SQL = "Update bgc_metadata set time_write=to_timestamp('" + timeNow + "','YYYYMMDDHH24MISS') " +
@@ -346,7 +351,7 @@ public class ReadTxt extends ReadBase {
                 LogUtils.getInstance().logInfo("Insert into bgc_metadata " + platform_number);
                 //     "where \"isBGC\"=true;";
             } else {
-                SQL = "Update bgc_metadata set " +
+                SQL = "Update bgc_metadata SET " +
                         "date_update=all_metadata.date_update," +
                         "profiler_type=all_metadata.profiler_type," +
                         "time_write=to_timestamp('" + getNow() + "','YYYYMMDDHH24MISS') " +

@@ -107,11 +107,11 @@ public class main {
 
     public static void main(String[] args) {
         // 定时下载 !!!!!!!!!!!
-        // runTimeTask();
+         runTimeTask();
 
         // ------------------------- 测试部分 ---------------------------------
         LogUtils.getInstance().logInfo("Test Start");
-        ArrayList<String> test = new ArrayList<>();
+//        ArrayList<String> test = new ArrayList<>();
 //        test.add("F:/BGCArgo/BgcData/BGCAgro/Download/coriolis/6902954/profiles/SR6902954_003.nc"); // NullPointerException
 //        test.add("F:/BGCArgo/BgcData/BGCAgro/Download/coriolis/6902954/profiles/MR6902954_003.nc"); // NullPointerException
 //        test.add("F:/BGCArgo/BgcData/BGCAgro/Download/aoml/5904179/profiles/MD5904179_176.nc"); // NullPointerException
@@ -119,13 +119,13 @@ public class main {
 //        test.add("D:/BGCAgro/Download/csiro/5905395/profiles/SD5905395_031.nc"); //
         // 20210324
 //        test.add("F:/BGCArgo/BgcData/BGCAgro/Download/jma/2903394/profiles/BR2903394_110.nc");
-        test.add("F:/BGCArgo/BgcData/BGCAgro/Download/jma/2903394/profiles/SR2903394_110.nc");
+//        test.add("F:/BGCArgo/BgcData/BGCAgro/Download/jma/2903394/profiles/SR2903394_110.nc");
 //        test.add("F:/BGCArgo/BgcData/BGCAgro/Download/jma/2903394/profiles/R2903394_110.nc");
 //        test.add("F:/BGCArgo/BgcData/BGCAgro/Download/jma/2903394/profiles/BR2903394_143.nc");
 //        test.add("F:/BGCArgo/BgcData/BGCAgro/Download/jma/2903394/profiles/SR2903394_143.nc");
 //        test.add("F:/BGCArgo/BgcData/BGCAgro/Download/jma/2903394/profiles/R2903394_143.nc");
 //        ReadMetaNC.getInstance().readFile(test);
-        ReadProfileNC.getInstance().readFile(test);
+//        ReadProfileNC.getInstance().readFile(test);
 
         System.out.println("等待输入 nextDouble ---------------------------------------------------- ");
         new Scanner(System.in).nextDouble();
